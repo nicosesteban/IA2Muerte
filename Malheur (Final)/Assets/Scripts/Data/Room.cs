@@ -1,11 +1,15 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Room : MonoBehaviour {
 
     public List<GameObject> enemies = new List<GameObject>();
     public List<GameObject> doors = new List<GameObject>();
+    public List<Turret> turrets = new List<Turret>();
+
 
 	public virtual void Start ()
     {
@@ -38,4 +42,17 @@ public class Room : MonoBehaviour {
         if (transform.childCount == 0)
             Destroy(this.gameObject);
 	}
+
+    public void tuhermana()
+    {
+        List<string> ColeccionDeHabitaciones = new List<string>();
+
+        var sarasas = FList.Create<Tuple<string, int>>();
+
+        FList<Tuple<string, int>> sarasa = ColeccionDeHabitaciones.Aggregate(sarasas, (acum, current) =>
+        {
+            acum += Tuple.Create(current, 5);
+            return acum;
+        });
+    }
 }
