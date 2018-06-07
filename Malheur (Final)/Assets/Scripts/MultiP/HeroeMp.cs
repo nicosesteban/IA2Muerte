@@ -37,7 +37,7 @@ public class HeroeMp : NetworkBehaviour {
         Cursor.visible = false;
         health = 100;
         rigidB = this.GetComponent<Rigidbody>();
-        gun = this.transform.FindChild("Gun").gameObject;
+        gun = this.transform.Find("Gun").gameObject;
 
         if (isLocalPlayer) this.gameObject.AddComponent<BrainMp>();
         if (Nm.numPlayers == 1)

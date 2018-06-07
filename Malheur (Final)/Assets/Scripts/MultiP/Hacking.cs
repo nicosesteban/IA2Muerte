@@ -52,11 +52,11 @@ public class Hacking : NetworkBehaviour {
     [ClientRpc]
     public void RpcHack()
     {
-        hackingData = heroe.transform.FindChild("TotalCanvasMultiP").FindChild("Canvas").FindChild("Hacking Data").gameObject;
-        _key = hackingData.transform.FindChild("Key").gameObject;
+        hackingData = heroe.transform.Find("TotalCanvasMultiP").Find("Canvas").Find("Hacking Data").gameObject;
+        _key = hackingData.transform.Find("Key").gameObject;
         _initialKeyPos = _key.transform.position;
-        _hole = hackingData.transform.FindChild("Hole").gameObject;
-        _shooter = hackingData.transform.FindChild("Shooter").gameObject;
+        _hole = hackingData.transform.Find("Hole").gameObject;
+        _shooter = hackingData.transform.Find("Shooter").gameObject;
         hackingData.SetActive(true);
         heroe.GetComponent<HeroeMp>().isLocked = true;
     }

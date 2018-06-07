@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Analytics;
 
-public class Heroe : MonoBehaviour {
+public class Heroe : GridEntity {
 
     public Vector3 crouchHeight;
     public float crouchSpeed;
@@ -182,6 +182,8 @@ public class Heroe : MonoBehaviour {
 
     public void Move()
     {
+        ExecuteOnMove();
+
         if (_isCrouching)
             _rigidB.velocity = (transform.forward * Input.GetAxis("Vertical") + _yVector + transform.right * Input.GetAxis("Horizontal")).normalized * crouchSpeed;
 
@@ -322,12 +324,12 @@ public class Heroe : MonoBehaviour {
         {
             PlaySound("Pick Up");
             Destroy(c.gameObject);
-            gun = transform.FindChild("BRR").gameObject;
+            gun = transform.Find("BRR").gameObject;
             gun.SetActive(true);
             heatText.gameObject.SetActive(true);
             gunImage.gameObject.SetActive(true);
             //Activo la puerta
-            GameObject.Find("nivel encuentro arma").transform.FindChild("GreatDoor003").GetComponent<BossDoor>().canOpen = true;
+            GameObject.Find("nivel encuentro arma").transform.Find("GreatDoor003").GetComponent<BossDoor>().canOpen = true;
         }
     }
 

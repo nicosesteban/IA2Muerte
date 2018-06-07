@@ -5,6 +5,7 @@ using UnityEngine.AI;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 using IA2;
+using System;
 
 public class Tankie : Turret {
 
@@ -14,6 +15,8 @@ public class Tankie : Turret {
 
     public enum TankieInputs { IDLE, PURSUIT, SHOOT, DISABLE }
     private EventFSM<TankieInputs> _myFsm;
+
+    public event Action<Tankie> OnMove = delegate{};
 
     public bool alarmTrigger;
 
@@ -105,6 +108,9 @@ public class Tankie : Turret {
                     }
                 }
             }
+
+            OnMove(this);
+
             if (health <= 0)
                 SendInputToFSM(TankieInputs.DISABLE);
         };
